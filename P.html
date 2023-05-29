@@ -15,7 +15,6 @@
 } 
 </style>
 </head>
-
 <body>
 <script src="https://docs.opencv.org/3.4.0/opencv.js" async onload="onOpenCvReady();" type="text/javascript"></script>
 <div>
@@ -24,12 +23,10 @@
 <div class="row-align">
   <table>
     <tr>
-      <td><input type="file" id="file-upload1" /></td>
+      <td><input type="file" id="file-upload1" /><br><label id="image1size" /></td>
       <td><img id="src-image1" /></td>
-      <td><label id="image1size" /></td>
-      <td><input type="file" id="file-upload2" /></td>
+      <td><input type="file" id="file-upload2" /><br><label id="image2size" /></td>
       <td><img id="src-image2" /></td>
-      <td><label id="image2size" /></td>
     </tr>
     <tr>
       <td>
@@ -92,15 +89,13 @@
         </label></td>
     </tr>
     <tr>
-      <td><button id="button2" onclick="showphoto()">解密</button>
+      <td><button id="button2" onclick="showphoto()">解密</button><br>
         <label id="err"></label></td>
-    </tr>
-    <tr>
       <td><canvas id="canvas" /></td>
     </tr>
     <tr>
-      <td><button id="button3" onclick="check()">比對</button>
-        <label id="check"></label></td>
+      <td><button id="button3" onclick="check()">比對</button></td>
+      <td><label id="check"></label></td>
     </tr>
     <tr>
       <td><button id="button4" onclick="reset()">重新選擇</button></td>
