@@ -16,12 +16,13 @@
 </style>
 </head>
 <body>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="https://docs.opencv.org/3.4.0/opencv.js" async onload="onOpenCvReady();" type="text/javascript"></script>
 <div>
   <p id="loading-opencv-msg">Loading the Opencv ...</p>
 </div>
 <div class="row-align">
-  <table>
+  <table id="input_3_2">
     <tr>
       <td><input type="file" id="file-upload1" /><br><label id="image1size" /></td>
       <td><img id="src-image1" /></td>
@@ -49,7 +50,7 @@
       <td><label for="box4"><input id="box4" type="checkbox" class="checkbox" value='4'>
           <div class="check"><canvas id="canvas4" /></div>
         </label></td>
-	</tr>
+    </tr>
     <tr>
       <td><label for="box5"><input id="box5" type="checkbox" class="checkbox" value='5'>
           <div class="check"><canvas id="canvas5" /></div>
@@ -76,9 +77,9 @@
         </label></td>
       <td><label for="box12"><input id="box12" type="checkbox" class="checkbox" value='12'>
           <div class="check"><canvas id="canvas12" /></div>
-	</tr>
-    <tr>
         </label></td>
+    </tr>
+    <tr>
       <td><label for="box13"><input id="box13" type="checkbox" class="checkbox" value='13'>
           <div class="check"><canvas id="canvas13" /></div>
         </label></td>
@@ -106,10 +107,22 @@
     </tr>
   </table>
 </div>
+
 <script>
 window.onOpenCvReady = function() {
   document.getElementById('loading-opencv-msg').remove();
 }
+
+$(document).ready(function() {
+  $('#input_3_2 input[type=checkbox]').click(function() {
+    $("#input_3_2 input[type=checkbox]").attr('disabled', true);
+    if ($("#input_3_2 input[type=checkbox]:checked").length >= 2) {
+      $("#input_3_2 input[type=checkbox]:checked").attr('disabled', false);
+    } else {
+      $('#input_3_2 input[type=checkbox]').attr('disabled', false);
+    }
+  });
+})
 
 var fileUploadEl = document.getElementById('file-upload1'),
   srcImgEl = document.getElementById('src-image1')
@@ -138,7 +151,7 @@ srcImgE2.onload = function() {
   crow = src.rows;
   ccol = src.cols;
   c1 = getpixels(src);
-  document.getElementById("image2size").innerHTML =  ('大小' + crow + '*' + ccol);
+  document.getElementById("image2size").innerHTML = ('大小' + crow + '*' + ccol);
 }
 
 function getarr(n) {
@@ -321,9 +334,10 @@ function check() {
   document.getElementById("check").innerHTML = ('與原圖' + n + '處相同,' + n / imgData.data.length * 100 + '%相符');
 }
 
-function reset(){
-location.reload();
+function reset() {
+  location.reload();
 }
+
 </script>
 </body>
 
