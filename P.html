@@ -78,6 +78,20 @@ body {
 	font-size: medium;
 	background-color: rgba(205,255,201,1.00);
 }
+#middle5{
+	width: 49.7%;
+	height: 130%;
+	float: left;
+	font-size: medium;
+	background-color: #ffebc9;
+}
+#middle6{
+	width: 49.7%;
+	height: 130%;
+	float: left;
+	font-size: medium;
+	background-color: #ffebc9;
+}
 #image1size
 {
 	font-size: xx-large;
@@ -87,12 +101,12 @@ body {
 	font-size: xx-large;	
 }
 #src-image1{
-	width: 260px;
-	height: 260px;
+	width: 128px;
+	height: 128px;
 }
 #src-image2{
-	width: 520px;
-	height: 520px;
+	width: 256px;
+	height: 256px;
 }
 .checkbox {
   position: absolute;
@@ -125,21 +139,25 @@ body {
 .footer1{
 	position: absolute;
 	top: 113%;
-	left: 26%;
-	height:15%;
-	width: 48%;
-	margin-top: 1%;
+	height: 18%;
+	width: 98.8%;
 	border-radius: 5px;
 	background-color: rgba(93,239,137,1.00);
+	border: 2px solid white;
 }
 #canvas{
 	width: 260px;
 	height: 260px;
 	border: solid 1px #fff;
 }
+#button{
+	width: 8%;
+	height: 30%;
+	box-shadow: 8px 10px 10px 1px rgba(0,0,0,0.5);
+}
 #button1{
-	width: 15%;
-	height: 40%;
+	width: 8%;
+	height: 30%;
 	box-shadow: 8px 10px 10px 1px rgba(0,0,0,0.5);
 }
 #button2{
@@ -164,6 +182,16 @@ body {
 	font-size: x-large;
 	box-shadow: 8px 10px 10px 1px rgba(0,0,0,0.5);
 }
+#button8{
+	width: 25%;
+	height: 10%;
+	box-shadow: 8px 10px 10px 1px rgba(0,0,0,0.5);
+}
+#button7{
+	width: 50%;
+	height: 10%;
+	box-shadow: 8px 10px 10px 1px rgba(0,0,0,0.5);
+}
 #check{
 	font-size: x-large;
 }
@@ -182,6 +210,31 @@ body {
 	height: 20%;
 	font-size: large;
  }
+#AA{
+	width: 11%;
+	height: 20%;
+	font-size: large;
+}
+#AB{
+	width: 7%;
+	height: 20%;
+	font-size: large;
+}
+#src-image3{
+	width: 256px;
+	height: 256px;
+	border: solid 1px #fff;
+}
+#src-image4{
+	width: 256px;
+	height: 256px;
+	border: solid 1px #fff;
+}
+#canvas34{
+	width: 128px;
+	height: 128px;
+	border: solid 1px #fff;
+}
 
 </style>
 </head>
@@ -190,9 +243,17 @@ body {
 
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="https://docs.opencv.org/3.4.0/opencv.js" async onload="onOpenCvReady();" type="text/javascript"></script>
-<div>
-  <p id="loading-opencv-msg">Loading the Opencv ...</p>
-</div>
+<<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>多張有意義分享圖像之彩色視覺密碼技術</title>
+
+<link href="fianl1.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
 <div style=center>
 <div id="header"><strong style="font-weight: normal; font-size="6";">多張有意義分享圖像之彩色視覺密碼技術</strong></div>
 
@@ -203,7 +264,7 @@ body {
               <p>&nbsp;</p>
             </div>
             <p>  
-                <input type="file" id="file-upload1" />
+                <input type="file" id="file-upload1" /><br>
     </p>
             <p>              <img class="srcimg" id="src-image1" /></p>
             <p>&nbsp;</p>
@@ -216,14 +277,14 @@ body {
               <p><strong style="font-size: medium">(須為機密圖像 2倍長 2倍寬)</strong>            </p>
             </div>
             <p>
-              <input type="file" id="file-upload2" />
+              <input type="file" id="file-upload2" /><br>
     </p>
     						<img class="srcimg" id="src-image2" />
             <p>&nbsp;</p>
     </div>
     <div class="footer1">
     <br>
-        <label for="quantity">選擇分享圖像張數(2~16)
+      <label for="quantity">選擇分享圖像張數(2~16)
           <input type="number" id="quantity" name="quantity" min="2" max="16">
           </label>
         <button id="button1" onclick="showphotos()"><strong style="font-size: large">開始生成</strong></button>
@@ -297,7 +358,7 @@ body {
     		<button id="button2" onclick="showphoto()"><strong style="font-size: xx-large">開始解密</strong></button>
     	    <p>&nbsp;</p>
     	    <p>
-    	      <label id="err"></label>
+    	      <label id="err"></label><br>
     	      <canvas id="canvas" />              
       </p>
       
@@ -306,21 +367,47 @@ body {
     <div id="middle4" class="imgFrame">
     <p>&nbsp;</p>
     <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <button id="button3" onclick="check()"><strong style="font-size: xx-large">與原圖進行比對</strong></button>
-      <p>
+    <button id="button3" onclick="check()"><strong style="font-size: xx-large">與原圖進行比對</strong></button><br>
         <label id="check"></label>
-   	     </p>
-         	<p><br>
+			<br>
          	  <br>
-         	  <br>
-       	  </p>
-<button id="button5" onclick="reset()"><strong>完全清除</strong></button>
+              <br>
+          <button id="button7" onclick="downloadCanvas()"><strong style="font-size: xx-large">下載所選分享圖像</strong></button>
+          <br>
+          <br>
+          <br>
+<button id="button5" onclick="reset()"><strong style="font-size: xx-large">完全清除</strong></button>
            
            
     </div>
+    <div id="middle5" class="imgFrame">
+    
+		<table>
+	<tr>
+	<div><font size="6"><strong>選擇兩張保留之分享圖像</strong></font></div>
+    <br>
+	  <input type="file" id="file-upload3" /><br>
+      <img id="src-image3" />
+	  </tr>
+      <br>
+	<tr>
+	  <input type="file" id="file-upload4" /><br>
+      <img id="src-image4" />
+	</tr>
+	</table>
+    </div>
+    <div id="middle6" class="imgFrame">
+    <div><font size="6"><strong>分享圖像解密</strong></font></div>
+    <br>
+	<button id="button6" onclick="showphoto34()"><strong style="font-size: xx-large">解密</strong></button>
+	<br>
+	<canvas id="canvas34" />
+	</div>
 </div>
 </div>
+</body>
+</html>
+
 <script>
 window.onOpenCvReady = function() {
   document.getElementById('loading-opencv-msg').remove();
@@ -351,7 +438,13 @@ fileUploadE2.addEventListener("change", function(e) {
   srcImgE2.src = URL.createObjectURL(e.target.files[0]);
 }, false);
 
-var s1, s1a, s2, c1, c2, srow = 0,scol = 0,crow = 0,ccol = 0,AC;
+var s1, s1a, s2, c1, c2, c3, c4, srow = 0,
+  scol = 0,
+  crow = 0,
+  ccol = 0,
+  c34row = 0,
+  c34col = 0,
+  AC;
 
 srcImgEl.onload = function() {
   var src = cv.imread(srcImgEl);
@@ -383,6 +476,18 @@ function srgb(r, g, b, s) {
   this.s = s;
 }
 
+function ab() {
+  this.a = Math.floor(Math.random() * 256);
+  while (this.a % 2 == 0 || this.a == 1 || 256 % this.a == 0)
+    this.a = Math.floor(Math.random() * 256);
+  this.b = Math.floor(1 + Math.random() * 255);
+  for (var i = 0; i < 256; i++) {
+    var flag = (this.a * i) % 256;
+    if (flag == 1)
+      this.a_inv = i;
+  }
+}
+
 function getpixels(src) {
   var p = new getarr(src.rows);
   for (var y = 0; y < src.rows; y++) {
@@ -394,25 +499,24 @@ function getpixels(src) {
   return p;
 }
 
-function ab() {
-  this.a = Math.floor(Math.random() * 256);
-  while (this.a % 2 == 0)
-    this.a = Math.floor(Math.random() * 256);
-  this.b = Math.floor(1 + Math.random() * 255);
+function getA_inv(n) {
+  var inv;
   for (var i = 0; i < 256; i++) {
-    var flag = (this.a * i) % 256;
+    var flag = (n * i) % 256;
     if (flag == 1)
-      this.a_inv = i;
+      inv = i;
   }
+  return inv;
 }
 
 function affine() {
-  AC = new getarr(srow);
+  AC = new getarr(3);
+  for (var i = 0; i < 3; i++)
+    AC[i] = new ab();
   s1a = new getarr(srow);
   for (var y = 0; y < srow; y++) {
     for (var x = 0; x < scol; x++) {
-      AC[y][x] = new ab();
-      s1a[y][x] = new srgb((s1[y][x].r * AC[y][x].a + AC[y][x].b) % 256, (s1[y][x].g * AC[y][x].a + AC[y][x].b) % 256, (s1[y][x].b * AC[y][x].a + AC[y][x].b) % 256, 255);
+      s1a[y][x] = new srgb((s1[y][x].r * AC[0].a + AC[0].b) % 256, (s1[y][x].g * AC[1].a + AC[1].b) % 256, (s1[y][x].b * AC[2].a + AC[2].b) % 256, 255);
     }
   }
 }
@@ -471,9 +575,19 @@ function showphotos() {
     window.alert("錯誤:沒有圖片或圖片大小錯誤");
   else {
     var num = document.getElementById('quantity');
-    if (num.value == 0)
+    if (num.value == 0 || num.value == 1)
       window.alert("請輸入生成張數");
     else {
+      for (var p = 1; p <= 16; p++) {
+        var c = document.getElementById('canvas' + p),
+          ctx = c.getContext('2d'),
+          imgData = ctx.createImageData(crow, ccol);
+        c.width = ccol;
+        c.height = crow;
+        for (var i = 0; i < imgData.data.length; i++)
+          imgData.data[i] = 0;
+        ctx.putImageData(imgData, 0, 0);
+      }
       var tmp = getphotos();
       for (var p = 1; p <= num.value; p++) {
         var c = document.getElementById('canvas' + p),
@@ -486,7 +600,20 @@ function showphotos() {
             imgData.data[y * ccol * 4 + x * 4 + 0] = tmp[p - 1][y][x].r;
             imgData.data[y * ccol * 4 + x * 4 + 1] = tmp[p - 1][y][x].g;
             imgData.data[y * ccol * 4 + x * 4 + 2] = tmp[p - 1][y][x].b;
-            imgData.data[y * ccol * 4 + x * 4 + 3] = tmp[p - 1][y][x].s;
+            if (y == 0 && x == 0)
+              imgData.data[y * ccol * 4 + x * 4 + 3] = AC[0].a;
+            else if (y == 0 && x == 1)
+              imgData.data[y * ccol * 4 + x * 4 + 3] = AC[0].b;
+            else if (y == 0 && x == 2)
+              imgData.data[y * ccol * 4 + x * 4 + 3] = AC[1].a;
+            else if (y == 0 && x == 3)
+              imgData.data[y * ccol * 4 + x * 4 + 3] = AC[1].b;
+            else if (y == 0 && x == 4)
+              imgData.data[y * ccol * 4 + x * 4 + 3] = AC[2].a;
+            else if (y == 0 && x == 5)
+              imgData.data[y * ccol * 4 + x * 4 + 3] = AC[2].b;
+            else
+              imgData.data[y * ccol * 4 + x * 4 + 3] = tmp[p - 1][y][x].s;
           }
         }
         ctx.putImageData(imgData, 0, 0);
@@ -495,8 +622,33 @@ function showphotos() {
   }
 }
 
+var fileUploadE3 = document.getElementById('file-upload3'),
+  srcImgE3 = document.getElementById('src-image3')
+fileUploadE3.addEventListener("change", function(e) {
+  srcImgE3.src = URL.createObjectURL(e.target.files[0]);
+}, false);
+
+var fileUploadE4 = document.getElementById('file-upload4'),
+  srcImgE4 = document.getElementById('src-image4')
+fileUploadE4.addEventListener("change", function(e) {
+  srcImgE4.src = URL.createObjectURL(e.target.files[0]);
+}, false);
+
+srcImgE3.onload = function() {
+  var src = cv.imread(srcImgE3);
+  c34row = src.rows;
+  c34col = src.cols;
+  c3 = getpixels(src);
+}
+
+srcImgE4.onload = function() {
+  var src = cv.imread(srcImgE4);
+  c4 = getpixels(src);
+}
+
 function showphoto() {
-  var a = -1,b = -1;
+  var a = -1,
+    b = -1;
   var markedCheckbox = document.querySelectorAll('input[type="checkbox"]:checked');
   for (var checkbox of markedCheckbox) {
     if (a == -1) a = checkbox.value;
@@ -523,19 +675,42 @@ function showphoto() {
       }
       tmp[i] = imgData_a.data[i] ^ imgData_b.data[i];
     }
+    var AA = new getarr(3);
+    for (var i = 0; i < 3; i++)
+      AA[i] = new ab();
+    AA[0].a = imgData_a.data[3];
+    AA[0].b = imgData_a.data[7];
+    AA[1].a = imgData_a.data[11];
+    AA[1].b = imgData_a.data[15];
+    AA[2].a = imgData_a.data[19];
+    AA[2].b = imgData_a.data[23];
+    for (var i = 0; i < 3; i++)
+      AA[i].a_inv = getA_inv(AA[i].a)
     for (var y = 0; y < srow; y++) {
       for (var x = 0; x < scol; x++) {
         for (var t = 0; t < 4; t++) {
-          var z = Math.max(tmp[2 * y * ccol * 4 + 2 * x * 4 + t], tmp[2 * y * ccol * 4 + (2 * x + 1) * 4 + t], tmp[(2 * y + 1) * ccol * 4 + 2 * x * 4 + t], tmp[(2 * y + 1) * ccol * 4 + (2 * x + 1) * 4 + t]) - AC[y][x].b;
-          if (z < 0) z += 256;
-          imgData.data[y * scol * 4 + x * 4 + t] = z * AC[y][x].a_inv % 256;
+          if (t == 0) {
+            var z = Math.max(tmp[2 * y * ccol * 4 + 2 * x * 4 + t], tmp[2 * y * ccol * 4 + (2 * x + 1) * 4 + t], tmp[(2 * y + 1) * ccol * 4 + 2 * x * 4 + t], tmp[(2 * y + 1) * ccol * 4 + (2 * x + 1) * 4 + t]) - AA[0].b;
+            if (z < 0) z += 256;
+            imgData.data[y * scol * 4 + x * 4 + t] = z * AA[0].a_inv % 256;
+          } else if (t == 1) {
+            var z = Math.max(tmp[2 * y * ccol * 4 + 2 * x * 4 + t], tmp[2 * y * ccol * 4 + (2 * x + 1) * 4 + t], tmp[(2 * y + 1) * ccol * 4 + 2 * x * 4 + t], tmp[(2 * y + 1) * ccol * 4 + (2 * x + 1) * 4 + t]) - AA[1].b;
+            if (z < 0) z += 256;
+            imgData.data[y * scol * 4 + x * 4 + t] = z * AA[1].a_inv % 256;
+          } else if (t == 2) {
+            var z = Math.max(tmp[2 * y * ccol * 4 + 2 * x * 4 + t], tmp[2 * y * ccol * 4 + (2 * x + 1) * 4 + t], tmp[(2 * y + 1) * ccol * 4 + 2 * x * 4 + t], tmp[(2 * y + 1) * ccol * 4 + (2 * x + 1) * 4 + t]) - AA[2].b;
+            if (z < 0) z += 256;
+            imgData.data[y * scol * 4 + x * 4 + t] = z * AA[2].a_inv % 256;
+          } else {
+            imgData.data[y * scol * 4 + x * 4 + t] = 255;
+          }
         }
       }
     }
     for (var i = 3; i < imgData.data.length; i += 4)
       imgData.data[i] = 255;
     ctx.putImageData(imgData, 0, 0);
-    document.getElementById("err").innerHTML = ('圖'+a+" XOR 圖"+b);
+    document.getElementById("err").innerHTML = ('圖' + a + " XOR 圖" + b);
   } else {
     window.alert('請選擇兩張圖片');
     for (var i = 0; i < imgData.data.length; i++)
@@ -544,8 +719,64 @@ function showphoto() {
   }
 }
 
+function showphoto34() {
+  if (c3 != null && c4 != null) {
+    var AA = new getarr(3);
+    for (var i = 0; i < 3; i++)
+      AA[i] = new ab();
+    AA[0].a = c3[0][0].s;
+    AA[0].b = c3[0][1].s;
+    AA[1].a = c3[0][2].s;
+    AA[1].b = c3[0][3].s;
+    AA[2].a = c3[0][4].s;
+    AA[2].b = c3[0][5].s;
+    for (var i = 0; i < 3; i++)
+      AA[i].a_inv = getA_inv(AA[i].a)
+    var c = document.getElementById('canvas34'),
+      ctx = c.getContext('2d'),
+      imgData = ctx.createImageData(c34row / 2, c34col / 2),
+      tmpc = [];
+    c.width = c34col / 2;
+    c.height = c34row / 2;
+    for (var y = 0; y < c34row; y++) {
+      for (var x = 0; x < c34col; x++) {
+        tmpc[y * 4 * c34col + x * 4 + 0] = c3[y][x].r ^ c4[y][x].r;
+        tmpc[y * 4 * c34col + x * 4 + 1] = c3[y][x].g ^ c4[y][x].g;
+        tmpc[y * 4 * c34col + x * 4 + 2] = c3[y][x].b ^ c4[y][x].b;
+        tmpc[y * 4 * c34col + x * 4 + 3] = 255;
+      }
+    }
+    for (var y = 0; y < c34row / 2; y++) {
+      for (var x = 0; x < c34col / 2; x++) {
+        for (var t = 0; t < 4; t++) {
+          if (t == 0) {
+            var z = Math.max(tmpc[2 * y * c34col * 4 + 2 * x * 4 + t], tmpc[2 * y * c34col * 4 + (2 * x + 1) * 4 + t], tmpc[(2 * y + 1) * c34col * 4 + 2 * x * 4 + t], tmpc[(2 * y + 1) * c34col * 4 + (2 * x + 1) * 4 + t]) - AA[0].b;
+            if (z < 0) z += 256;
+            imgData.data[y * c34col / 2 * 4 + x * 4 + t] = z * AA[0].a_inv % 256;
+          } else if (t == 1) {
+            var z = Math.max(tmpc[2 * y * c34col * 4 + 2 * x * 4 + t], tmpc[2 * y * c34col * 4 + (2 * x + 1) * 4 + t], tmpc[(2 * y + 1) * c34col * 4 + 2 * x * 4 + t], tmpc[(2 * y + 1) * c34col * 4 + (2 * x + 1) * 4 + t]) - AA[1].b;
+            if (z < 0) z += 256;
+            imgData.data[y * c34col / 2 * 4 + x * 4 + t] = z * AA[1].a_inv % 256;
+          } else if (t == 2) {
+            var z = Math.max(tmpc[2 * y * c34col * 4 + 2 * x * 4 + t], tmpc[2 * y * c34col * 4 + (2 * x + 1) * 4 + t], tmpc[(2 * y + 1) * c34col * 4 + 2 * x * 4 + t], tmpc[(2 * y + 1) * c34col * 4 + (2 * x + 1) * 4 + t]) - AA[2].b;
+            if (z < 0) z += 256;
+            imgData.data[y * c34col / 2 * 4 + x * 4 + t] = z * AA[2].a_inv % 256;
+          } else {
+            imgData.data[y * scol * 4 + x * 4 + t] = 255;
+          }
+        }
+      }
+    }
+    for (var i = 3; i < imgData.data.length; i += 4)
+      imgData.data[i] = 255;
+    ctx.putImageData(imgData, 0, 0);
+  } else {
+    window.alert("錯誤:圖片缺失");
+  }
+}
+
 function rechoose() {
-document.getElementById("err").innerHTML = ('');
+  document.getElementById("err").innerHTML = ('');
   $('input:checkbox').removeAttr('checked');
   $("input:checkbox").prop("disabled", false);
   var c = document.getElementById('canvas'),
@@ -568,7 +799,35 @@ function check() {
         n += 4;
     }
   }
-  document.getElementById("check").innerHTML = ('與原圖' + n + '處相同,' + n / imgData.data.length * 100 + '%相符');
+  //document.getElementById("check").innerHTML = ('與原圖' + n + '處相同,' + n / imgData.data.length * 100 + '%相符');
+   if (n / imgData.data.length * 100 > 99)
+    document.getElementById("check").innerHTML = ('與原圖' + 100 + '%相符'); 
+}
+
+function downloadCanvas() {
+  var a = -1,
+    b = -1;
+  var markedCheckbox = document.querySelectorAll('input[type="checkbox"]:checked');
+  for (var checkbox of markedCheckbox) {
+    if (a == -1) a = checkbox.value;
+    else b = checkbox.value;
+  }
+  var canvas = document.getElementById('canvas' + a);
+  var canvas1 = document.getElementById('canvas' + b);
+  var image = canvas.toDataURL();
+  var image1 = canvas1.toDataURL();
+  var url = [image, image1];
+  var tmpLink = document.createElement('a');
+  tmpLink.download = '分享份1.png';
+  tmpLink.href = image;
+  document.body.appendChild(tmpLink);
+  tmpLink.click();
+  document.body.removeChild(tmpLink);
+  tmpLink.download = '分享份2.png';
+  tmpLink.href = image1;
+  document.body.appendChild(tmpLink);
+  tmpLink.click();
+  document.body.removeChild(tmpLink);
 }
 
 function reset() {
